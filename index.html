@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <meta http-equiv="PRAGMA" content="NO-CACHE">
+    <title>Wedge Demo</title>
+    <!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+
+    <link href="assets/css/vq.css" type="text/css" rel="stylesheet" />
+
+    <script type="text/javascript" src="lib/d3/d3.v2.min.js"></script>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="lib/underscore/underscore.js"></script>
+    <script type="text/javascript" src="lib/vq/vq.js"></script>
+    <script type="text/javascript" src="lib/vq/vq.circvis.js"></script>
+    <!-- <script type="text/javascript" src="data/circvis_data.json"></script> -->
+    <script type="text/javascript" src="data/eQTL_density/eQTL_density_islet.json"></script>
+    <script type="text/javascript" src="data/trans_eQTL_hotspots/islet_11_network.json"></script>
+    <script type="text/javascript" src="data/chromInfo.json"></script>
+    <script type="text/javascript" src="data/cytoband.mm9.json"></script>
+    <script type="text/javascript" src="js/circvis_configure.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="assets/css/font-awesome-ie7.css">
+    <![endif]-->
+
+</head>
+<body>
+    <table><tr><td><b>eQTL Hotspots:</b></td><td>
+    <form action='javascript:updateCircvis();'>
+    <select name='hotspot'>
+        <option value="islet_8" onchange='updateCircvis()'>Islet 8</option>
+        <option value="islet_11" selected onchange='updateCircvis()'>Islet 11</option>
+        <option value="islet_14" onchange='updateCircvis();'>Iselt 14</option>
+        <option value="kidney_3" onchange='updateCircvis();'>Kidney 3</option>
+    </select>
+    <input type='submit' value='Change Hotspot'>
+</td></tr></table>
+</form>
+<div id="wedge" style="font: 10px sans-serif;margin:10px;"></div>
+
+<script type="text/javascript">
+
+    var circle;
+    circle = circvis.plot($('#wedge').get(0));
+
+</script>
+
+</body>
+</html>

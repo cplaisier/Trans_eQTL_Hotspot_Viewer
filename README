@@ -1,0 +1,28 @@
+This is a joint effort between the Attie Lab at University of Wisconsin Madison (http://www.biochem.wisc.edu/faculty/attie/lab/) the Baliga Lab (http://baliga.systemsbiology.net) and the Shmulevich Lab (http://shmulevich.systemsbiology.net/).  Incorporating the cirvis technology from the Shmulevich lab as a visualization for trans-eQTL results from a mouse F2 intercross.
+
+Data is stored as JSON formatted flat files and is selectively loaded based upon user input as to the trans-eQTL hotspot they wish to view.
+
+Dependencies:
+
+Apache
+JQuery
+Circvis
+mod_python
+
+Installing mod_python into the Apache web server:
+
+Ensure you have an Apache web server and mod_python installed on the server you are trying to install this software.  Then add the folllowing lines to the Apache httpd.conf file:
+
+  LoadModule python_module modules/mod_python.so
+
+  # Python pycircvis directory
+  <Directory /path/to/where/you/put/this/software> 
+      AddHandler mod_python .py
+      PythonHandler mod_python.publisher
+      PythonDebug On 
+  </Directory>
+
+Restart the Apache web server and check to see if you path you setup the software serves up the data:
+
+http://<path>/index.py/network?network=islet_8
+

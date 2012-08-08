@@ -149,7 +149,8 @@
                 PLOT : {
 
                     height : 120,
-                    type : 'scatterplot'
+//                    type : 'scatterplot'
+                    type : 'area'
                 },
                 DATA:{
                     data_array : eqtl_density, //link_density,
@@ -163,11 +164,11 @@
                     base_value : 0,
                     radius : 2,
                     outer_padding: 10,
-                    stroke_style : 'red',
                     line_width:2,
-                    tooltip_items: hovercard_items_config,
-                    tooltip_links: hovercard_links_config,
-                    fill_style: 'red',
+                    tooltip_items: function() { return null;},
+                    tooltip_links: function() { return null;},
+                    stroke_style: 'black', //'red',
+		    fill_style: densityColor, //'red',
                     listener : function() {return null;}
                 }
             }/*,
@@ -308,6 +309,7 @@
                 data_array:[]
             },
             OPTIONS : {
+		render_ticks: false,
                 wedge_height: 15,
                 wedge_width: 0.7,
                 overlap_distance:10000000, //tile ticks at specified base pair distance

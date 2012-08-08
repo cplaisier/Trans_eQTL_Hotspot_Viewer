@@ -1,5 +1,5 @@
 #################################################################
-# @Program: mod_python circvis backend                          #
+# @Program: circvis                                             #
 # @Version: 1                                                   #
 # @Author: Chris Plaisier                                       #
 # @Sponsored by:                                                #
@@ -10,7 +10,6 @@
 # (216) 732-2139                                                #
 # @Also Sponsored by:                                           #
 # Luxembourg Systems Biology Grant                              #
-# American Cancer Society Postdoctoral Fellowship               #
 #                                                               #
 # If this program is used in your analysis please mention who   #
 # built it. Thanks. :-)                                         #
@@ -62,34 +61,42 @@ def network(req):
         'liver_2'
     ]
     hotspots = {
-        'islet_1': 'Islet 1 (Chr 6 @ 91)',
-        'islet_2': 'Islet 2 (Chr 2 @ 74)',
-        'islet_3': 'Islet 3 (Chr 17 @ 13)',
-        'islet_4': 'Islet 4 (Chr 2 @ 81)',
-        'islet_5': 'Islet 5 (Chr 2 @ 64)',
-        'islet_6': 'Islet 6 (Chr 12 @ 11)',
-        'islet_7': 'Islet 7 (Chr 2 @ 69)',
-        'islet_8': 'Islet 8 (Chr 2 @ 87)',
-        'islet_9': 'Islet 9 (Chr 7 @ 7)',
-        'islet_10': 'Islet 10 (Chr 6 @ 96)',
-        'islet_11': 'Islet 11 (Chr 13 @ 66)',
-        'islet_12': 'Islet 12 (Chr 19 @ 47)',
-        'islet_13': 'Islet 13 (Chr 17 @ 20)',
-        'islet_14': 'Islet 14 (Chr 12 @ 21)',
-        'adipose_1': 'Adipose 1 (Chr 10 @ 50)',
-        'adipose_2': 'Adipose 2 (Chr 17 @ 13)',
-        'adipose_3': 'Adipose 3 (Chr 4 @ 83)',
-        'adipose_4': 'Adipose 4 (Chr 9 @ 56)',
-        'adipose_5': 'Adipose 5 (Chr 1 @ 61)',
-        'adipose_6': 'Adipose 6 (Chr 1 @ 41)',
-        'adipose_7': 'Adipose 7 (Chr 1 @ 87)',
-        'liver_1': 'Liver 1 (Chr 2 @ 53)',
-        'liver_2': 'Liver 2 (Chr 17 @ 13)',
-        'gastroc_1': 'Gastrocnemius 1 (Chr 17 @ 10)',
-        'kidney_1': 'Kidney 1 (Chr 17 @ 10)',
-        'kidney_2': 'Kidney 2 (Chr 17 @ 15)',
-        'kidney_3': 'Kidney 3 (Chr 1 @ 60)',
-        'hypothalamus_1': 'Hypothalamus 1 (Chr 1 @ 81)'
+        'islet_1': 'Islet 1 (Chr 6 @ 91 cM)',
+        'islet_2': 'Islet 2 (Chr 2 @ 74 cM)',
+        'islet_3': 'Islet 3 (Chr 17 @ 13 cM)',
+        'islet_4': 'Islet 4 (Chr 2 @ 81 cM)',
+        'islet_5': 'Islet 5 (Chr 2 @ 64 cM)',
+        'islet_6': 'Islet 6 (Chr 12 @ 11 cM)',
+        'islet_7': 'Islet 7 (Chr 2 @ 69 cM)',
+        'islet_8': 'Islet 8 (Chr 2 @ 87 cM)',
+        'islet_9': 'Islet 9 (Chr 7 @ 7 cM)',
+        'islet_10': 'Islet 10 (Chr 6 @ 96 cM)',
+        'islet_11': 'Islet 11 (Chr 13 @ 66 cM)',
+        'islet_12': 'Islet 12 (Chr 19 @ 47 cM)',
+        'islet_13': 'Islet 13 (Chr 17 @ 20 cM)',
+        'islet_14': 'Islet 14 (Chr 12 @ 21 cM)',
+        'adipose_1': 'Adipose 1 (Chr 10 @ 50 cM)',
+        'adipose_2': 'Adipose 2 (Chr 17 @ 13 cM)',
+        'adipose_3': 'Adipose 3 (Chr 4 @ 83 cM)',
+        'adipose_4': 'Adipose 4 (Chr 9 @ 56 cM)',
+        'adipose_5': 'Adipose 5 (Chr 1 @ 61 cM)',
+        'adipose_6': 'Adipose 6 (Chr 1 @ 41 cM)',
+        'adipose_7': 'Adipose 7 (Chr 1 @ 87 cM)',
+        'liver_1': 'Liver 1 (Chr 2 @ 53 cM)',
+        'liver_2': 'Liver 2 (Chr 17 @ 13 cM)',
+        'gastroc_1': 'Gastrocnemius 1 (Chr 17 @ 10 cM)',
+        'kidney_1': 'Kidney 1 (Chr 17 @ 10 cM)',
+        'kidney_2': 'Kidney 2 (Chr 17 @ 15 cM)',
+        'kidney_3': 'Kidney 3 (Chr 1 @ 60 cM)',
+        'hypothalamus_1': 'Hypothalamus 1 (Chr 1 @ 81 cM)'
+    }
+    colors = {
+        'adipose': '#ff0000',
+        'gastroc': '#ff6600',
+        'hypothalamus': '#ffff00',
+        'islet': '#00ff00',
+        'kidney': '#0000ff',
+        'liver': '#ff00ff'
     }
     # Gene Name, AME corrected p-value
     putativeRegulators = {
@@ -160,6 +167,9 @@ def network(req):
     html1 += '\t<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->\n'
     html1 += '\t<link rel="stylesheet" href="../assets/css/font-awesome.css">\n'
     html1 += '\t<link href="../assets/css/vq.css" type="text/css" rel="stylesheet" />\n'
+    html1 += '\t<script type="text/javascript">\n'
+    html1 += '\t\tdensityColor = \''+str(colors[tissue])+'\';\n'
+    html1 += '\t</script>\n'
     html1 += '\t<script type="text/javascript" src="../lib/d3/d3.v2.min.js"></script>\n'
     html1 += '\t<script src="../js/jquery.min.js" type="text/javascript"></script>\n'
     html1 += '\t<script type="text/javascript" src="../lib/underscore/underscore.js"></script>\n'
@@ -186,6 +196,7 @@ def network(req):
     html1 += '\t</style>\n'
     html1 += '</head>\n'
     html1 += '<body>\n\n'
+    html1 += '<center><h2>eQTL Hotspot '+hotspots[network]+'</h2></center>\n'
     html1 += '<center><table><tr><td class=\'form\'><center><form action=\'network\' method=\'get\'>\n'
     html1 += '\t<b>Trans-eQTL Hotspots:</b></br> <select name=\'network\'>\n'
     for hotspot in names:
@@ -202,7 +213,7 @@ def network(req):
     html1 += '<tr><td class=\'head\'><b>Trans-eQTLs w/ Motif:</b></td><td class=\'body\'>'+str(numberOfeQTLs[network][2])+'</td></tr>\n'
     html1 += '<tr><td class=\'head\'><b>Causal Trans-eQTLs:</b></td><td class=\'body\'>'+str(numberOfeQTLs[network][3])+'</td></tr>\n'
     html1 += '<tr><td class=\'head\'><b>Causal Trans-eQTLs w/ Motif:</b></td><td class=\'body\'>'+str(numberOfeQTLs[network][4])+'</td></tr></table>\n'
-    html1 += '</center></td><td>&nbsp; &nbsp; &nbsp; &nbsp;<img src=\'../data/legend_v2.gif\'></td></tr></table></center>\n'
+    html1 += '</center></td><td><img src=\'../data/legend_v2.gif\'></td></tr></table></center>\n'
     html1 += '<div id="wedge" style="font: 10px sans-serif;margin:10px;"></div>\n\n'
     html1 += '<script type="text/javascript">\n\n'
     html1 += '\tvar circle;\n'
@@ -211,3 +222,4 @@ def network(req):
     html1 += '</body>\n'
     html1 += '</html>\n'
     return html1
+

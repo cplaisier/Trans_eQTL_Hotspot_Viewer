@@ -131,34 +131,34 @@ def network(req):
     }
     # Number of Trans-eQTLs, with sequence, matching motif, causal, overlapping
     numberOfeQTLs = {
-        'islet_1': [2388, 624, 227, 234, 19],
-        'islet_2': [1735, 1061, 660, 122, 65],
-        'islet_3': [1106, 780, 223, 4, 1],
-        'islet_4': [965, 522, 211, 4, 1],
-        'islet_5': [892, 'NA', 'NA', 'NA', 'NA'],
-        'islet_6': [807, 422, 199, 307, 62],
-        'islet_7': [641, 'NA', 'NA', 'NA', 'NA'],
-        'islet_8': [593, 258, 225, 281, 84],
-        'islet_9': [573, 344, 307, 99, 52],
-        'islet_10': [499, 135, 120, 21, 11],
-        'islet_11': [476, 360, 115, 120, 31],
-        'islet_12': [472, 'NA', 'NA', 'NA', 'NA'],
-        'islet_13': [468, 296, 131, 308, 89],
-        'islet_14': [432, 210, 201, 9, 3],
-        'adipose_1': [793, 'NA', 'NA', 'NA', 'NA'],
-        'adipose_2': [784, 502, 145, 9, 1],
-        'adipose_3': [567, 'NA', 'NA', 'NA', 'NA'],
-        'adipose_4': [553, 'NA', 'NA', 'NA', 'NA'],
-        'adipose_5': [517, 307, 243, 94, 45],
-        'adipose_6': [495, 'NA', 'NA', 'NA', 'NA'],
-        'adipose_7': [464, 'NA', 'NA', 'NA', 'NA'],
-        'liver_1': [2255, 'NA', 'NA', 'NA', 'NA'],
-        'liver_2': [1016, 'NA', 'NA', 'NA', 'NA'],
-        'gastroc_1': [1015, 498, 44, 153, 7],
-        'kidney_1': [2157, 1408, 50, 433, 9],
-        'kidney_2': [907, 565, 180, 78, 21],
-        'kidney_3': [515, 325, 244, 110, 65],
-        'hypothalamus_1': [1006, 'NA', 'NA', 'NA', 'NA']
+        'islet_1': [2388,  624,  227, 234, 48, 19],
+        'islet_2': [1735,  1061, 660, 122, 92, 65],
+        'islet_3': [1106,  780,  223, 4, 3, 1],
+        'islet_4': [965,   522,  211, 4, 2, 1],
+        'islet_5': [892,   'NA', 'NA', 'NA', 'NA', 'NA'],
+        'islet_6': [807,   422,  199, 307, 135, 62],
+        'islet_7': [641,   'NA', 'NA', 'NA', 'NA', 'NA'],
+        'islet_8': [593,   258,  225, 281, 102, 84],
+        'islet_9': [573,   344,  307, 99, 58, 52],
+        'islet_10': [499,  135,  120, 21, 12, 11],
+        'islet_11': [476,  360,  115, 120, 101, 31],
+        'islet_12': [472,  'NA', 'NA', 'NA', 'NA', 'NA'],
+        'islet_13': [468,  296,  131, 308, 188, 89],
+        'islet_14': [432,  210,  201, 9, 3, 3],
+        'adipose_1': [793, 'NA', 'NA', 'NA', 'NA', 'NA'],
+        'adipose_2': [784, 502,  145, 9, 8, 1],
+        'adipose_3': [567, 'NA', 'NA', 'NA', 'NA', 'NA'],
+        'adipose_4': [553, 'NA', 'NA', 'NA', 'NA', 'NA'],
+        'adipose_5': [517, 307,  243, 94, 58, 45],
+        'adipose_6': [495, 'NA', 'NA', 'NA', 'NA', 'NA'],
+        'adipose_7': [464, 'NA', 'NA', 'NA', 'NA', 'NA'],
+        'liver_1': [2255,  'NA', 'NA', 'NA', 'NA', 'NA'],
+        'liver_2': [1016,  'NA', 'NA', 'NA', 'NA', 'NA'],
+        'gastroc_1': [1015, 498, 44, 153, 94, 7],
+        'kidney_1': [2157, 1408, 50, 433, 281, 9],
+        'kidney_2': [907,  565,  180, 78, 60, 21],
+        'kidney_3': [515,  325,  244, 110, 86, 65],
+        'hypothalamus_1': [1006, 'NA', 'NA', 'NA', 'NA', 'NA']
     }
     html1 =  '<html>\n'
     html1 += '<head>\n'
@@ -179,7 +179,7 @@ def network(req):
     html1 += '\t<script type="text/javascript" src="../data/eQTL_density/eQTL_density_'+tissue+'.json"></script>\n'
     html1 += '\t<script type="text/javascript" src="../data/trans_eQTL_hotspots/'+network+'_network.json"></script>\n'
     html1 += '\t<script type="text/javascript" src="../data/chromInfo.json"></script>\n'
-    html1 += '\t<script type="text/javascript" src="../data/cytoband.mm9.json"></script>\n'
+    html1 += '\t<script type="text/javascript" src="../data/cytoband.mm9.clean.json"></script>\n'
     html1 += '\t<script type="text/javascript" src="../js/circvis_configure.js"></script>\n\n'
     html1 += '\t<!--[if lt IE 9]>\n'
     html1 += '\t<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>\n'
@@ -191,7 +191,7 @@ def network(req):
     html1 += '\t\tbody { font-family: arial, sans-serif; }\n'
     #html1 += '\t\ttable.info { border: 1px solid black; }\n'
     html1 += '\t\ttd.head { text-align: center; background-color: #cccccc; border: 1px solid black; -moz-border-radius: 8px; -webkit-border-radius: 8px; }\n'
-    html1 += '\t\ttd.body { text-align: center; border: 1px solid black;  -moz-border-radius: 8px; -webkit-border-radius: 8px; }\n' #background-color: #333333; color: #ffffff; border: 1px solid black; }\n'
+    html1 += '\t\ttd.body { text-align: center; border: 1px solid black;  -moz-border-radius: 8px; -webkit-border-radius: 8px; background-color: #ffffff; }\n' #background-color: #333333; color: #ffffff; border: 1px solid black; }\n'
     html1 += '\t\ttd.form { text-align: center; border: 1px solid black; background-color: #cccccc;  -moz-border-radius: 8px; -webkit-border-radius: 8px; }\n' #background-color: #333333; color: #ffffff; border: 1px solid black; }\n'
     html1 += '\t</style>\n'
     html1 += '</head>\n'
@@ -206,15 +206,18 @@ def network(req):
         html1 += '<option value=\''+hotspot+'\''+selected+'>'+hotspots[hotspot]+'</option>'
     html1 += '\t</select></br>'
     html1 += ' <input type=\'submit\' value=\'Change Hotspot\'>'
-    html1 += '</form></td><td>\n'
-    html1 += '<table cellpadding=4 class=\'info\'><tr><td class=\'head\'><b>Putative Regulator:</b></td><td class=\'body\'><b><font color=\'#CC0000\'>'+putativeRegulators[network][0]+'</font></b></td></tr>\n'
-    html1 += '<tr><td class=\'head\'><b>AME Corrected P-Value:</b></td><td class=\'body\'>'+str(putativeRegulators[network][1])+'</td></tr>\n'
-    html1 += '<tr><td class=\'head\'><b>Trans-eQTLs:</b></td><td class=\'body\'>'+str(numberOfeQTLs[network][0])+'</td></tr>\n'
+    html1 += '</form>\n'
+    html1 += '<table cellpadding=4 class=\'info\'><tr><td><center><b>Putative Regulator:</b></center></td><td class=\'body\'><b><font color=\'#CC0000\'>'+putativeRegulators[network][0]+'</font></b></td></tr>\n'
+    html1 += '<tr><td><center><b>Trans-eQTLs:</b></center></td><td class=\'body\'>'+str(numberOfeQTLs[network][0])+'</td></tr></table>\n'
+    html1 += '</td><td>\n'
+    html1 += '<table cellpadding=4 class=\'info\'><tr><td class=\'head\'><b>AME Corrected P-Value:</b></td><td class=\'body\'>'+str(putativeRegulators[network][1])+'</td></tr>\n'
+    html1 += '<tr><td class=\'head\'><b>Trans-eQTLs w/ Seq.:</b></td><td class=\'body\'>'+str(numberOfeQTLs[network][1])+'</td></tr>\n'
     html1 += '<tr><td class=\'head\'><b>Trans-eQTLs w/ Motif:</b></td><td class=\'body\'>'+str(numberOfeQTLs[network][2])+'</td></tr>\n'
     html1 += '<tr><td class=\'head\'><b>Causal Trans-eQTLs:</b></td><td class=\'body\'>'+str(numberOfeQTLs[network][3])+'</td></tr>\n'
-    html1 += '<tr><td class=\'head\'><b>Causal Trans-eQTLs w/ Motif:</b></td><td class=\'body\'>'+str(numberOfeQTLs[network][4])+'</td></tr></table>\n'
+    html1 += '<tr><td class=\'head\'><b>Causal Trans-eQTLs w/ Seq.:</b></td><td class=\'body\'>'+str(numberOfeQTLs[network][4])+'</td></tr>\n'
+    html1 += '<tr><td class=\'head\'><b>Causal Trans-eQTLs w/ Motif:</b></td><td class=\'body\'>'+str(numberOfeQTLs[network][5])+'</td></tr></table>\n'
     html1 += '</center></td><td><img src=\'../data/legend_v2.gif\'></td></tr></table></center>\n'
-    html1 += '<div id="wedge" style="font: 10px sans-serif;margin:10px;"></div>\n\n'
+    html1 += '<center><div id="wedge" style="font: 10px sans-serif;margin:10px;"></div></center>\n\n'
     html1 += '<script type="text/javascript">\n\n'
     html1 += '\tvar circle;\n'
     html1 += '\tcircle = circvis.plot($(\'#wedge\').get(0));\n'
